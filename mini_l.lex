@@ -3,10 +3,21 @@
 
 %{
 #include "heading.h"
+#include "tok.h"
 %}
     int line = 1;
     int column = 0;
+
+comment         ##.*\n
+char            [a-zA-Z]
+difig           [0-9]
+identifier      {char}+(_*({char}|{digit})+)*
+snlidenti       (_|{digit})+{identifier}_*
+eunidenti       {identifier}_+
+number          {digit}*\.?{digit}+([eE][+-]?{digit}+)?
+
 %%
+{comment}       {   column = 0; ++line;                     }
 "function"      {   column += yyleng;   return FUNCTION;    }
 "beginparams"   {   column += yyleng;   return BEGINPARAMS; }
 "endparams"     {   column += yyleng;   return ENDPARAMS;   }
@@ -58,4 +69,13 @@
 "\t"            {   column += yyleng;                       }
 "\n"            {   ++line; column = 0;                     }
 
+{identifier}    {   column += yyleng;   yylval.op_val = new std::string(yytext);  return IDENTIFIER;    }
+{snlidenti}     
+{eunidenti}     
+{number}        {   yylval.int_val = atoi(yytext);  return INTEGER_LITERAL; }
+.               
+
 %%
+
+
+
