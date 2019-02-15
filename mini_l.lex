@@ -53,7 +53,7 @@ number          {digit}*\.?{digit}+([eE][+-]?{digit}+)?
 ">"             {   column += yyleng;   return GT;          }
 "<="            {   column += yyleng;   return LTE;         }
 ">="            {   column += yyleng;   return GTE;         }
-"="             {   column += yyleng;   return EQ;          }
+"=="             {   column += yyleng;   return EQ;          }
 "<>"            {   column += yyleng;   return NEQ;         }
 ";"             {   column += yyleng;   return SEMICOLON;   }
 ":"             {   column += yyleng;   return COLON;       }
