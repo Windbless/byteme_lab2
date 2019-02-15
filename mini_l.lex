@@ -53,7 +53,7 @@ number          {digit}*\.?{digit}+([eE][+-]?{digit}+)?
 ">"             {   column += yyleng;   return GT;          }
 "<="            {   column += yyleng;   return LTE;         }
 ">="            {   column += yyleng;   return GTE;         }
-"=="             {   column += yyleng;   return EQ;          }
+"=="            {   column += yyleng;   return EQ;          }
 "<>"            {   column += yyleng;   return NEQ;         }
 ";"             {   column += yyleng;   return SEMICOLON;   }
 ":"             {   column += yyleng;   return COLON;       }
@@ -70,10 +70,10 @@ number          {digit}*\.?{digit}+([eE][+-]?{digit}+)?
 "\n"            {   ++line; column = 0;                     }
 
 {identifier}    {   column += yyleng;   yylval.op_val = new std::string(yytext);  return IDENTIFIERS;    }
-{snlidenti}     { printf("Error at line %d, column %d: identifier \"%s\" must begin with a letter.\n", line, column, yytext);}
-{eunidenti}     { printf("Error at line %d, column %d: identifier \"%s\" must begin with a letter.\n",line, column, yytext);}
+{snlidenti}     { printf("Error at line %d, column %d: identifier \"%s\" must begin with a letter.\n", line, column, yytext); exit(1);}
+{eunidenti}     { printf("Error at line %d, column %d: identifier \"%s\" can not end with underscore.\n",line, column, yytext); exit(1);}
 {number}        {   yylval.int_val = atoi(yytext);  return NUMBER; }
-.               
+.               { printf("Error at line %d, column %d: identifier \"%s\" unrecognized symbol\n",line, column, yytext); exit(1);}
 
 %%
 
