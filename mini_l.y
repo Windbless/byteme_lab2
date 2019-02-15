@@ -11,7 +11,7 @@ int yylex(void);
   string*	op_val;
 }
 
-%start	input 
+%start	prog_start
 
 
 %token <int_val> NUMBER
@@ -44,8 +44,8 @@ int yylex(void);
 %token SEMICOLON
 %token COLON
 %token COMMA
-%token LAPAREN
-%token RAPAREN
+%token LPAREN
+%token RPAREN
 %token LSQUARE
 %token RSQUARE
 %token ASSIGN
@@ -62,24 +62,24 @@ int yylex(void);
 
 %%
 
-prog_start:	functions 	{count << "prog_start -> functions"<< endl;}
+prog_start:	functions 	{cout << "prog_start -> functions"<< endl;}
 	  	;
-functions:	/* empty */ 	{count << "functions ->	epsilon" << endl;}
- 		| function functions {count << "functions -> function functions"<< endl;}
+functions:	/* empty */ 	{cout << "functions ->	epsilon" << endl;}
+ 		| function functions {cout << "functions -> function functions"<< endl;}
 		;
 function:	FUNCTION IDENTIFIERS SEMICOLON BEGINPARAMS Declarations ENDPARAMS BEGINLOCALS Declarations ENDLOCALS BEGINBODY statements ENDBODY {cout<<"FUNCTION IDENT "<<*($2)<<" SEMI		 COLON BEGIN_PARAMS declarations END_PARAMS BEGIN_LOCALS declarations END_LOCALS BEGIN_BODY statements END_BODY"<<endl;}
 		;
-Declarations:	/* empty */	{count << "Declaration -> epsilon" << endl;}
+Declarations:	/* empty */	{cout << "Declaration -> epsilon" << endl;}
 	   	| declaration SEMICOLON Declarations {cout << "Declaration -> declaration SEMICOLON declarations"<< endl;}
 		;
-statements:		* empty */	{count << "statements -> epsilon" << endl;}
+statements:		/* empty */	{cout << "statements -> epsilon" << endl;}
 	   	| statement SEMICOLON statements {cout << "statements -> statement SEMICOLON statements"<< endl;}
 		;
-declaration:	Identifiers COLON Arrayid	{count << "declaration -> identifiers COLON Arrayid" << endl;}
+declaration:	Identifiers COLON Arrayid	{cout << "declaration -> identifiers COLON Arrayid" << endl;}
 	   	;
 
 Identifiers:	IDENTIFIERS	{cout << "identifiers -> IDENT "<<*($1)<<endl ;}
-	   	|IDENTIFIERS COMMA indentifiers	{cout<<"identidiers -> IDENT "<<*($1)<<" COMMA id" << endl;}
+	   	|IDENTIFIERS COMMA Identifiers	{cout<<"identidiers -> IDENT "<<*($1)<<" COMMA id" << endl;}
 		;
 		
 Arrayid:	INTEGER		{cout << "Arrayid -> INTEGER" << endl;}	
@@ -93,7 +93,6 @@ statement:	astate		{cout << "statement -> a_state" << endl;}
 			|fstate		{cout << "statement -> f_state" << endl;}
 			|gstate		{cout << "statement -> g_state" << endl;}
 			|hstate		{cout << "statement -> h_state" << endl;}
-			|istate		{cout << "statement -> i_state" << endl;}
 			;
 astate:		var ASSIGN expression {cout << "a_state -> var ASSIGN expression" << endl;}
 			;
@@ -112,15 +111,15 @@ dstate:		DO BEGINLOOP states ENDLOOP states ENDLOOP {cout << "d_state -> DO BEGI
 			;
 estate:		READ vars {cout << "e_state -> READ vars" << endl;}
 			;
-gstate:		WRITE vars {cout << "g_state -> WRITE vars" << endl;}
+fstate:		WRITE vars {cout << "g_state -> WRITE vars" << endl;}
 			;
-hstate:		CONTINUE   {cout << "h_state -> CONTINUE" << endl;}
+gstate:		CONTINUE   {cout << "h_state -> CONTINUE" << endl;}
 			;
-istate:		RETURN Expression {cout << "i_state -> RETURN Expression" << endl;}
+hstate:		RETURN expression {cout << "i_state -> RETURN Expression" << endl;}
 			;
 
 bool_expr:	relation_And_Expr	{cout << "bool_expr -> relation-And-Expr" << endl;}
- 		| relation_And_Expr OR bool_exper {cout << "bool_expr -> relationn-And-Expr OR bool_exper" << endl;}
+ 		| relation_And_Expr OR bool_expr {cout << "bool_expr -> relationn-And-Expr OR bool_exper" << endl;}
 		;
 relation_And_Expr: relation_Expr	{cout << "relation_And_Expr -> relationn_Expr" << endl;}
 		|relation_Expr AND relation_And_Expr {cout << "relation_And_Expr -> relation_Expr AND relation_And_Expr" << endl;}
@@ -128,7 +127,7 @@ relation_And_Expr: relation_Expr	{cout << "relation_And_Expr -> relationn_Expr" 
 relation_Expr:	NOT re_ex	{cout << "relation_Expr -> NOT re_ex" << endl;}
 	     	| re_ex		{cout << "relationn_Expr -> re_ex" << endl;}
 		;
-re_ex:		expressions	{cout << "re_ex	-> expressions" << endl;}
+re_ex:		expression	{cout << "re_ex	-> expressions" << endl;}
      		|TRUE		{cout << "re_ex -> TRUE" << endl;}
 		|FALSE		{cout << "re_ex -> FALSE" << endl;}
 		|LPAREN	bool_expr RPAREN {cout << "re_ex -> LPAREN bool_expr RPAREN" << endl;}
@@ -148,7 +147,7 @@ expre:		/*empty*/ {cout << "expre -> epsilon" << endl;}
 		;
 multiplicative_Expr:	term terms	{cout << "multiplicative_Expr -> term terms" << endl;}
 		   ;
-terms:		/&empty*/ 		{cout << "terms -> epsilon" << endl;}
+terms:		/*empty*/ 		{cout << "terms -> epsilon" << endl;}
      		|MULT term terms	{cout << "terms -> MULT term terms" << endl;}
 		|DIVI term terms	{cout << "terms -> DIVI term terms" << endl;}
 		|MOD  term terms	{cout << "terms -> MOD term terms" << endl;}
