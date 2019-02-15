@@ -75,7 +75,7 @@ Declarations:	/* empty */	{count << "Declaration -> epsilon" << endl;}
 statements:		* empty */	{count << "statements -> epsilon" << endl;}
 	   	| statement SEMICOLON statements {cout << "statements -> statement SEMICOLON statements"<< endl;}
 		;
-declaration:	Identifiers COLON Arrayid	{count << "identifiers COLON Arrayid" << endl;}
+declaration:	Identifiers COLON Arrayid	{count << "declaration -> identifiers COLON Arrayid" << endl;}
 	   	;
 
 Identifiers:	IDENTIFIERS	{cout << "identifiers -> IDENT "<<*($1)<<endl ;}
@@ -83,7 +83,7 @@ Identifiers:	IDENTIFIERS	{cout << "identifiers -> IDENT "<<*($1)<<endl ;}
 		;
 		
 Arrayid:	INTEGER		{cout << "Arrayid -> INTEGER" << endl;}	
-       		| ARRAY LSQUARE	NUMBER RSQUARE OF INTEGER	{cout << "ARRAY LSQUARE NUMBER RSQUARE OF INTEGER"<< endl;}
+       		| ARRAY LSQUARE	NUMBER RSQUARE OF INTEGER	{cout << "Arrayid -> ARRAY LSQUARE NUMBER RSQUARE OF INTEGER"<< endl;}
 		;
 statement:	astate		{cout << "statement -> a_state" << endl;}
 			|bstate		{cout << "statement -> b_state" << endl;}
@@ -154,11 +154,23 @@ terms:		/&empty*/ 		{cout << "terms -> epsilon" << endl;}
 		|MOD  term terms	{cout << "terms -> MOD term terms" << endl;}
 		;
 
-term:	Posterm		{cout << "term -> Posterm" << endl;l}
-
+term:	posterm		{cout << "term -> Posterm" << endl;}
+		|SUB posterm {cout << "term -> SUB posterm" << endl;}
+		|ident 		{cout << "term -> ident" << endl;}
+		;
+ident:	IDENTIFIERS	LPAREN ex RPAREN {cout << "ident -> IDENT " <<*($1) << "LPAREN ex RPAREN" << endl;}
+		;
+	
+ex:		/*empty*/	{cout << "ex -> epsilon" << endl;}
+		|expression COMMA ex {cout << "ex -> expression COMMA ex"}
+		;
+posterm:	var 	{cout << "posterm -> var" << endl;}
+			|NUMBER {cout << "posterm -> NUMBER" << endl;}
+			|LPAREN expression RPAREN {cout << "posterm -> LPAREN expression RPAREN" << endl;}
+			;
 var:		IDENTIFIERS		 {cout << "var -> IDENT " << *($1) << endl;}
-                | IDENTIFIERS LSQUARE expression RSQUARE {cout << "var -> IDENT "<< *($1) <<" LSQUARE expression RSQUARE" << endl;} 
-                ;
+            | IDENTIFIERS LSQUARE expression RSQUARE {cout << "var -> IDENT "<< *($1) <<" LSQUARE expression RSQUARE" << endl;} 
+            ;
 vars:		var COMMA vars 		 {cout << "vars -> var COMMA vars" << endl;}
     		|var			 {cout << "vars -> var" << endl;}
 		;
@@ -166,11 +178,11 @@ vars:		var COMMA vars 		 {cout << "vars -> var COMMA vars" << endl;}
 
 int yyerror(string s)
 {
-  extern int yylineno,row;	// defined and maintained in lex.c
+  extern int column,line;	// defined and maintained in lex.c
   extern char *yytext;	// defined and maintained in lex.c
   
   cerr << "ERROR: " << s << " at symbol \"" << yytext;
-  cerr << "\" on line " << yylineno << endl;
+  cerr << "\" on line " << line << endl;
   exit(1);
 }
 
