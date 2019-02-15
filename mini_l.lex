@@ -10,7 +10,7 @@
 
 comment         ##.*\n
 char            [a-zA-Z]
-difig           [0-9]
+digit           [0-9]
 identifier      {char}+(_*({char}|{digit})+)*
 snlidenti       (_|{digit})+{identifier}_*
 eunidenti       {identifier}_+
@@ -69,10 +69,10 @@ number          {digit}*\.?{digit}+([eE][+-]?{digit}+)?
 "\t"            {   column += yyleng;                       }
 "\n"            {   ++line; column = 0;                     }
 
-{identifier}    {   column += yyleng;   yylval.op_val = new std::string(yytext);  return IDENTIFIER;    }
-{snlidenti}     
-{eunidenti}     
-{number}        {   yylval.int_val = atoi(yytext);  return INTEGER_LITERAL; }
+{identifier}    {   column += yyleng;   yylval.op_val = new std::string(yytext);  return IDENTIFIERS;    }
+{snlidenti}     { printf("Error at line %d, column %d: identifier \"%s\" must begin with a letter.\n", line, column, yytext);}
+{eunidenti}     { printf("Error at line %d, column %d: identifier \"%s\" must begin with a letter.\n",line, column, yytext);}
+{number}        {   yylval.int_val = atoi(yytext);  return NUMBER; }
 .               
 
 %%
