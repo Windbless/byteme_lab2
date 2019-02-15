@@ -69,9 +69,10 @@ functions:	/* empty */ 	{cout << "functions ->	epsilon" << endl;}
 function:	FUNCTION IDENTIFIERS SEMICOLON BEGINPARAMS Declarations ENDPARAMS BEGINLOCALS Declarations ENDLOCALS BEGINBODY statements ENDBODY {cout<<"function -> FUNCTION IDENT "<<*($2)<<" SEMI		 COLON BEGIN_PARAMS declarations END_PARAMS BEGIN_LOCALS declarations END_LOCALS BEGIN_BODY statements END_BODY"<<endl;}
 		;
 Declarations:	/* empty */	{cout << "Declaration -> epsilon" << endl;}
+		| declaration SEMICOLON {cout << "Declaration -> declaration SEMICOLON"<< endl;}
 	   	| declaration SEMICOLON Declarations {cout << "Declaration -> declaration SEMICOLON declarations"<< endl;}
 		;
-statements:		/* empty */	{cout << "statements -> epsilon" << endl;}
+statements:		statement SEMICOLON {cout << "statements -> statement SEMICOLON " << endl;}
 	   	| statement SEMICOLON statements {cout << "statements -> statement SEMICOLON statements"<< endl;}
 		;
 declaration:	Identifiers COLON Arrayid	{cout << "declaration -> identifiers COLON Arrayid" << endl;}
@@ -106,7 +107,7 @@ elsestates:	/*empty*/ 	{cout << "elsestates -> epsilon" << endl;}
 
 cstate:		WHILE bool_expr BEGINLOOP states {cout << "c_state -> WHILE bool_expr BEGINLOOP states" << endl;}	   ;
 
-dstate:		DO BEGINLOOP states ENDLOOP states ENDLOOP {cout << "d_state -> DO BEGINLOOP states ENDLOOP states ENDLOOP" << endl;}
+dstate:		DO BEGINLOOP states ENDLOOP states ENDLOOP WHILE bool_expr  {cout << "d_state -> DO BEGINLOOP states ENDLOOP states ENDLOOP WHILE bool_expr " << endl;}
 			;
 estate:		READ vars {cout << "e_state -> READ vars" << endl;}
 			;
@@ -126,8 +127,8 @@ relation_And_Expr: relation_Expr	{cout << "relation_And_Expr -> relationn_Expr" 
 relation_Expr:	NOT re_ex	{cout << "relation_Expr -> NOT re_ex" << endl;}
 	     	| re_ex		{cout << "relationn_Expr -> re_ex" << endl;}
 		;
-re_ex:		expression	{cout << "re_ex	-> expressions" << endl;}
-     		|TRUE		{cout << "re_ex -> TRUE" << endl;}
+re_ex:	expression comp expression 	{cout << "re_ex	-> expressions" << endl;}
+     	|TRUE		{cout << "re_ex -> TRUE" << endl;}
 		|FALSE		{cout << "re_ex -> FALSE" << endl;}
 		|LPAREN	bool_expr RPAREN {cout << "re_ex -> LPAREN bool_expr RPAREN" << endl;}
 		;
@@ -160,6 +161,7 @@ ident:	IDENTIFIERS	LPAREN ex RPAREN {cout << "ident -> IDENT " <<*($1) << "LPARE
 		;
 	
 ex:		/*empty*/	{cout << "ex -> epsilon" << endl;}
+		|expression {cout << "ex -> expression" << endl;}
 		|expression COMMA ex {cout << "ex -> expression COMMA ex"}
 		; 
 posterm:	var 	{cout << "posterm -> var" << endl;}
