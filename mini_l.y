@@ -48,7 +48,6 @@ int yylex(void);
 %token RAPAREN
 %token LSQUARE
 %token RSQUARE
-%token ASSIGN
 %token RETURN
 
 %left	PLUS SUB
@@ -67,7 +66,7 @@ prog_start:	functions 	{count << "prog_start -> functions"<< endl;}
 functions:	/* empty */ 	{count << "functions ->	epsilon" << endl;}
  		| function functions {count << "functions -> function functions"<< endl;}
 		;
-function:	FUNCTION IDENTIFIERS SEMICOLON BEGINPARAMS Declarations ENDPARAMS BEGINLOCALS Declarations ENDLOCALS BEGINBODY statements ENDBODY {cout<<"FUNCTION IDENT "<<*($2)<<" SEMI		 COLON BEGIN_PARAMS declarations END_PARAMS BEGIN_LOCALS declarations END_LOCALS BEGIN_BODY statements END_BODY"<<endl;}
+function:	FUNCTION IDENTIFIERS SEMICOLON BEGINPARAMS Declarations ENDPARAMS BEGINLOCALS Declarations ENDLOCALS BEGINBODY statements ENDBODY {cout<<"function -> FUNCTION IDENT "<<*($2)<<" SEMI		 COLON BEGIN_PARAMS declarations END_PARAMS BEGIN_LOCALS declarations END_LOCALS BEGIN_BODY statements END_BODY"<<endl;}
 		;
 Declarations:	/* empty */	{count << "Declaration -> epsilon" << endl;}
 	   	| declaration SEMICOLON Declarations {cout << "Declaration -> declaration SEMICOLON declarations"<< endl;}
@@ -163,7 +162,7 @@ ident:	IDENTIFIERS	LPAREN ex RPAREN {cout << "ident -> IDENT " <<*($1) << "LPARE
 	
 ex:		/*empty*/	{cout << "ex -> epsilon" << endl;}
 		|expression COMMA ex {cout << "ex -> expression COMMA ex"}
-		;
+		; 
 posterm:	var 	{cout << "posterm -> var" << endl;}
 			|NUMBER {cout << "posterm -> NUMBER" << endl;}
 			|LPAREN expression RPAREN {cout << "posterm -> LPAREN expression RPAREN" << endl;}
@@ -173,7 +172,7 @@ var:		IDENTIFIERS		 {cout << "var -> IDENT " << *($1) << endl;}
             ;
 vars:		var COMMA vars 		 {cout << "vars -> var COMMA vars" << endl;}
     		|var			 {cout << "vars -> var" << endl;}
-		;
+			;
 %%
 
 int yyerror(string s)
@@ -181,8 +180,7 @@ int yyerror(string s)
   extern int column,line;	// defined and maintained in lex.c
   extern char *yytext;	// defined and maintained in lex.c
   
-  cerr << "ERROR: " << s << " at symbol \"" << yytext;
-  cerr << "\" on line " << line << endl;
+   cerr << "SYNTAX(PARSER) Error at line "<<row<<", column "<<column<<" : Unexpected Symbol \""<<yytext<<"\" Encountered."<<endl;
   exit(1);
 }
 
