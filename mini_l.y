@@ -72,8 +72,7 @@ Declarations:	/* empty */	{cout << "Declaration -> epsilon" << endl;}
 		| declaration SEMICOLON {cout << "Declaration -> declaration SEMICOLON"<< endl;}
 	   	| declaration SEMICOLON Declarations {cout << "Declaration -> declaration SEMICOLON declarations"<< endl;}
 		;
-statements:		statement SEMICOLON {cout << "statements -> statement SEMICOLON " << endl;}
-	   	| statement SEMICOLON statements {cout << "statements -> statement SEMICOLON statements"<< endl;}
+statements:		 statement SEMICOLON statements {cout << "statements -> statement SEMICOLON statements"<< endl;}  |		   statement SEMICOLON {cout << "statements -> statement SEMICOLON " << endl;}
 		;
 declaration:	Identifiers COLON Arrayid	{cout << "declaration -> identifiers COLON Arrayid" << endl;}
 	   	;
@@ -96,18 +95,16 @@ statement:	astate		{cout << "statement -> a_state" << endl;}
 			;
 astate:		var ASSIGN expression {cout << "a_state -> var ASSIGN expression" << endl;}
 			;
-bstate:		IF bool_expr THEN states elsestates ENDIF {cout << "b_state -> IF bool_expr THEN states elsestates ENDIF" << endl;}
+bstate:		IF bool_expr THEN statements elsestates ENDIF {cout << "b_state -> IF bool_expr THEN statements elsestates ENDIF" << endl;}
 			;
-states:		statement SEMICOLON		{cout << "states -> statement SEMICOLON" << endl;}
-			| statement SEMICOLON states {cout << "states -> statement SEMICOLON states" << endl;}
-			;
+
 elsestates:	/*empty*/ 	{cout << "elsestates -> epsilon" << endl;}
-			| ELSE states {cout << "elsestates -> ELSE states" << endl;} 
+			| ELSE statements {cout << "elsestates -> ELSE statements" << endl;} 
 			;
 
-cstate:		WHILE bool_expr BEGINLOOP states {cout << "c_state -> WHILE bool_expr BEGINLOOP states" << endl;}	   ;
+cstate:		WHILE bool_expr BEGINLOOP statements {cout << "c_state -> WHILE bool_expr BEGINLOOP statements" << endl;}	   ;
 
-dstate:		DO BEGINLOOP states ENDLOOP states ENDLOOP WHILE bool_expr  {cout << "d_state -> DO BEGINLOOP states ENDLOOP states ENDLOOP WHILE bool_expr " << endl;}
+dstate:		DO BEGINLOOP statements ENDLOOP statements ENDLOOP WHILE bool_expr  {cout << "d_state -> DO BEGINLOOP statements ENDLOOP statements ENDLOOP WHILE bool_expr " << endl;}
 			;
 estate:		READ vars {cout << "e_state -> READ vars" << endl;}
 			;
