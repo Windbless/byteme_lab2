@@ -179,7 +179,7 @@ int yyerror(string s)
   extern int column,line;	// defined and maintained in lex.c
   extern char *yytext;	// defined and maintained in lex.c
   
-   cerr << "SYNTAX(PARSER) Error at line "<<row<<", column "<<column<<" : Unexpected Symbol \""<<yytext<<"\" Encountered."<<endl;
+   cerr << "SYNTAX(PARSER) Error at line " << line <<", column " << column << " : Unexpected Symbol \"" << yytext << "\" Encountered." << endl;
   exit(1);
 }
 
