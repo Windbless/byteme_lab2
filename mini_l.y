@@ -85,7 +85,39 @@ Identifiers:	IDENTIFIERS	{cout << "identifiers -> IDENT "<<*($1)<<endl ;}
 Arrayid:	INTEGER		{cout << "Arrayid -> INTEGER" << endl;}	
        		| ARRAY LSQUARE	NUMBER RSQUARE OF INTEGER	{cout << "ARRAY LSQUARE NUMBER RSQUARE OF INTEGER"<< endl;}
 		;
-statement:	
+statement:	astate		{cout << "statement -> a_state" << endl;}
+			|bstate		{cout << "statement -> b_state" << endl;}
+			|cstate 	{cout << "statement -> c_state" << endl;}
+			|dstate		{cout << "statement -> d_state" << endl;}
+			|estate		{cout << "statement -> e_state" << endl;}
+			|fstate		{cout << "statement -> f_state" << endl;}
+			|gstate		{cout << "statement -> g_state" << endl;}
+			|hstate		{cout << "statement -> h_state" << endl;}
+			|istate		{cout << "statement -> i_state" << endl;}
+			;
+astate:		var ASSIGN expression {cout << "a_state -> var ASSIGN expression" << endl;}
+			;
+bstate:		IF bool_expr THEN states elsestates ENDIF {cout << "b_state -> IF bool_expr THEN states elsestates ENDIF" << endl;}
+			;
+states:		statement SEMICOLON		{cout << "states -> statement SEMICOLON" << endl;}
+			| statement SEMICOLON states {cout << "states -> statement SEMICOLON states" << endl;}
+			;
+elsestates:	/*empty*/ 	{cout << "elsestates -> epsilon" << endl;}
+			| ELSE states {cout << "elsestates -> ELSE states" << endl;} 
+			;
+
+cstate:		WHILE bool_expr BEGINLOOP states {cout << "c_state -> WHILE bool_expr BEGINLOOP states" << endl;}	   ;
+
+dstate:		DO BEGINLOOP states ENDLOOP states ENDLOOP {cout << "d_state -> DO BEGINLOOP states ENDLOOP states ENDLOOP" << endl;}
+			;
+estate:		READ vars {cout << "e_state -> READ vars" << endl;}
+			;
+gstate:		WRITE vars {cout << "g_state -> WRITE vars" << endl;}
+			;
+hstate:		CONTINUE   {cout << "h_state -> CONTINUE" << endl;}
+			;
+istate:		RETURN Expression {cout << "i_state -> RETURN Expression" << endl;}
+			;
 
 bool_expr:	relation_And_Expr	{cout << "bool_expr -> relation-And-Expr" << endl;}
  		| relation_And_Expr OR bool_exper {cout << "bool_expr -> relationn-And-Expr OR bool_exper" << endl;}
@@ -122,7 +154,7 @@ terms:		/&empty*/ 		{cout << "terms -> epsilon" << endl;}
 		|MOD  term terms	{cout << "terms -> MOD term terms" << endl;}
 		;
 
-term:
+term:	Posterm		{cout << "term -> Posterm" << endl;l}
 
 var:		IDENTIFIERS		 {cout << "var -> IDENT " << *($1) << endl;}
                 | IDENTIFIERS LSQUARE expression RSQUARE {cout << "var -> IDENT "<< *($1) <<" LSQUARE expression RSQUARE" << endl;} 
