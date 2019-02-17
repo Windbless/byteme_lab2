@@ -1,0 +1,399 @@
+Declaration -> epsilon
+identifiers -> IDENT n
+Arrayid -> INTEGER
+declaration -> identifiers COLON Arrayid
+identifiers -> IDENT k
+identidiers -> IDENT j COMMA id
+identidiers -> IDENT i COMMA id
+Arrayid -> INTEGER
+declaration -> identifiers COLON Arrayid
+identifiers -> IDENT t
+Arrayid -> ARRAY LSQUARE NUMBER RSQUARE OF INTEGER
+declaration -> identifiers COLON Arrayid
+Declaration -> epsilon
+Declaration -> declaration SEMICOLON declarations
+Declaration -> declaration SEMICOLON declarations
+Declaration -> declaration SEMICOLON declarations
+var -> IDENT i
+var -> IDENT j
+vars -> var
+vars -> var COMMA vars
+e_state -> READ vars
+statement -> e_state
+var -> IDENT k
+posterm -> NUMBER
+term -> Posterm
+terms -> epsilon
+multiplicative_Expr -> term terms
+expre -> epsilon
+expressionn -> multiplicative_Expr expre
+a_state -> var ASSIGN expression
+statement -> a_state
+var -> IDENT n
+posterm -> NUMBER
+term -> Posterm
+terms -> epsilon
+multiplicative_Expr -> term terms
+expre -> epsilon
+expressionn -> multiplicative_Expr expre
+a_state -> var ASSIGN expression
+statement -> a_state
+var -> IDENT k
+posterm -> var
+term -> Posterm
+terms -> epsilon
+multiplicative_Expr -> term terms
+expre -> epsilon
+expressionn -> multiplicative_Expr expre
+var -> IDENT t LSQUARE expression RSQUARE
+var -> IDENT k
+posterm -> var
+term -> Posterm
+terms -> epsilon
+multiplicative_Expr -> term terms
+expre -> epsilon
+expressionn -> multiplicative_Expr expre
+a_state -> var ASSIGN expression
+statement -> a_state
+var -> IDENT k
+var -> IDENT k
+posterm -> var
+term -> Posterm
+terms -> epsilon
+multiplicative_Expr -> term terms
+posterm -> NUMBER
+term -> Posterm
+terms -> epsilon
+multiplicative_Expr -> term terms
+expre -> epsilon
+expre -> PLUS multiplicative_expr expre
+expressionn -> multiplicative_Expr expre
+a_state -> var ASSIGN expression
+statement -> a_state
+var -> IDENT k
+posterm -> var
+term -> Posterm
+posterm -> NUMBER
+term -> Posterm
+terms -> epsilon
+terms -> MOD term terms
+multiplicative_Expr -> term terms
+expre -> epsilon
+expressionn -> multiplicative_Expr expre
+comp -> EQ
+posterm -> NUMBER
+term -> Posterm
+terms -> epsilon
+multiplicative_Expr -> term terms
+expre -> epsilon
+expressionn -> multiplicative_Expr expre
+re_ex	-> expressions
+relationn_Expr -> re_ex
+relation_And_Expr -> relationn_Expr
+bool_expr -> relation-And-Expr
+g_state -> CONTINUE
+statement -> g_state
+statements -> statement SEMICOLON 
+elsestates -> epsilon
+b_state -> IF bool_expr THEN statements elsestates ENDIF
+statement -> b_state
+var -> IDENT k
+posterm -> var
+term -> Posterm
+terms -> epsilon
+multiplicative_Expr -> term terms
+posterm -> NUMBER
+term -> Posterm
+terms -> epsilon
+multiplicative_Expr -> term terms
+expre -> epsilon
+expre -> SUB multiplicative_expr expre
+expressionn -> multiplicative_Expr expre
+var -> IDENT t LSQUARE expression RSQUARE
+vars -> var
+f_state -> WRITE vars
+statement -> f_state
+statements -> statement SEMICOLON 
+statements -> statement SEMICOLON statements
+statements -> statement SEMICOLON statements
+statements -> statement SEMICOLON statements
+var -> IDENT k
+posterm -> var
+term -> Posterm
+terms -> epsilon
+multiplicative_Expr -> term terms
+expre -> epsilon
+expressionn -> multiplicative_Expr expre
+comp -> LT
+var -> IDENT n
+posterm -> var
+term -> Posterm
+terms -> epsilon
+multiplicative_Expr -> term terms
+expre -> epsilon
+expressionn -> multiplicative_Expr expre
+re_ex	-> expressions
+relationn_Expr -> re_ex
+relation_And_Expr -> relationn_Expr
+bool_expr -> relation-And-Expr
+d_state -> DO BEGINLOOP statements ENDLOOP statements ENDLOOP WHILE bool_expr 
+statement -> d_state
+var -> IDENT i
+posterm -> var
+term -> Posterm
+terms -> epsilon
+multiplicative_Expr -> term terms
+expre -> epsilon
+expressionn -> multiplicative_Expr expre
+comp -> LT
+var -> IDENT j
+posterm -> var
+term -> Posterm
+terms -> epsilon
+multiplicative_Expr -> term terms
+expre -> epsilon
+expressionn -> multiplicative_Expr expre
+re_ex	-> expressions
+relationn_Expr -> re_ex
+var -> IDENT j
+posterm -> var
+term -> Posterm
+terms -> epsilon
+multiplicative_Expr -> term terms
+expre -> epsilon
+expressionn -> multiplicative_Expr expre
+comp -> LT
+var -> IDENT n
+posterm -> var
+term -> Posterm
+terms -> epsilon
+multiplicative_Expr -> term terms
+expre -> epsilon
+expressionn -> multiplicative_Expr expre
+re_ex	-> expressions
+relationn_Expr -> re_ex
+var -> IDENT i
+posterm -> var
+term -> Posterm
+terms -> epsilon
+multiplicative_Expr -> term terms
+expre -> epsilon
+expressionn -> multiplicative_Expr expre
+comp -> GTE
+posterm -> NUMBER
+term -> Posterm
+terms -> epsilon
+multiplicative_Expr -> term terms
+expre -> epsilon
+expressionn -> multiplicative_Expr expre
+re_ex	-> expressions
+relationn_Expr -> re_ex
+relation_And_Expr -> relationn_Expr
+relation_And_Expr -> relation_Expr AND relation_And_Expr
+relation_And_Expr -> relation_Expr AND relation_And_Expr
+bool_expr -> relation-And-Expr
+var -> IDENT i
+posterm -> var
+term -> Posterm
+terms -> epsilon
+multiplicative_Expr -> term terms
+expre -> epsilon
+expressionn -> multiplicative_Expr expre
+var -> IDENT t LSQUARE expression RSQUARE
+var -> IDENT i
+posterm -> var
+term -> Posterm
+posterm -> NUMBER
+term -> Posterm
+terms -> epsilon
+terms -> MULT term terms
+multiplicative_Expr -> term terms
+expre -> epsilon
+expressionn -> multiplicative_Expr expre
+a_state -> var ASSIGN expression
+statement -> a_state
+var -> IDENT j
+posterm -> var
+term -> Posterm
+terms -> epsilon
+multiplicative_Expr -> term terms
+expre -> epsilon
+expressionn -> multiplicative_Expr expre
+var -> IDENT t LSQUARE expression RSQUARE
+var -> IDENT j
+posterm -> var
+term -> Posterm
+posterm -> NUMBER
+term -> Posterm
+terms -> epsilon
+terms -> MULT term terms
+multiplicative_Expr -> term terms
+expre -> epsilon
+expressionn -> multiplicative_Expr expre
+a_state -> var ASSIGN expression
+statement -> a_state
+var -> IDENT k
+var -> IDENT i
+posterm -> var
+term -> Posterm
+terms -> epsilon
+multiplicative_Expr -> term terms
+expre -> epsilon
+expressionn -> multiplicative_Expr expre
+var -> IDENT t LSQUARE expression RSQUARE
+posterm -> var
+term -> Posterm
+terms -> epsilon
+multiplicative_Expr -> term terms
+expre -> epsilon
+expressionn -> multiplicative_Expr expre
+a_state -> var ASSIGN expression
+statement -> a_state
+var -> IDENT i
+posterm -> var
+term -> Posterm
+terms -> epsilon
+multiplicative_Expr -> term terms
+expre -> epsilon
+expressionn -> multiplicative_Expr expre
+var -> IDENT t LSQUARE expression RSQUARE
+var -> IDENT j
+posterm -> var
+term -> Posterm
+terms -> epsilon
+multiplicative_Expr -> term terms
+expre -> epsilon
+expressionn -> multiplicative_Expr expre
+var -> IDENT t LSQUARE expression RSQUARE
+posterm -> var
+term -> Posterm
+terms -> epsilon
+multiplicative_Expr -> term terms
+expre -> epsilon
+expressionn -> multiplicative_Expr expre
+a_state -> var ASSIGN expression
+statement -> a_state
+var -> IDENT j
+posterm -> var
+term -> Posterm
+terms -> epsilon
+multiplicative_Expr -> term terms
+expre -> epsilon
+expressionn -> multiplicative_Expr expre
+var -> IDENT t LSQUARE expression RSQUARE
+var -> IDENT k
+posterm -> var
+term -> Posterm
+terms -> epsilon
+multiplicative_Expr -> term terms
+expre -> epsilon
+expressionn -> multiplicative_Expr expre
+a_state -> var ASSIGN expression
+statement -> a_state
+statements -> statement SEMICOLON 
+statements -> statement SEMICOLON statements
+statements -> statement SEMICOLON statements
+statements -> statement SEMICOLON statements
+statements -> statement SEMICOLON statements
+var -> IDENT i
+posterm -> var
+term -> Posterm
+terms -> epsilon
+multiplicative_Expr -> term terms
+expre -> epsilon
+expressionn -> multiplicative_Expr expre
+comp -> GTE
+var -> IDENT j
+posterm -> var
+term -> Posterm
+terms -> epsilon
+multiplicative_Expr -> term terms
+expre -> epsilon
+expressionn -> multiplicative_Expr expre
+re_ex	-> expressions
+relationn_Expr -> re_ex
+relation_And_Expr -> relationn_Expr
+re_ex -> FALSE
+relationn_Expr -> re_ex
+relation_And_Expr -> relationn_Expr
+bool_expr -> relation-And-Expr
+bool_expr -> relationn-And-Expr OR bool_exper
+var -> IDENT k
+posterm -> NUMBER
+term -> Posterm
+terms -> epsilon
+multiplicative_Expr -> term terms
+var -> IDENT i
+posterm -> var
+term -> Posterm
+terms -> epsilon
+multiplicative_Expr -> term terms
+var -> IDENT j
+posterm -> var
+term -> Posterm
+terms -> epsilon
+multiplicative_Expr -> term terms
+expre -> epsilon
+expre -> SUB multiplicative_expr expre
+expre -> PLUS multiplicative_expr expre
+expressionn -> multiplicative_Expr expre
+posterm -> LPAREN expression RPAREN
+term -> Posterm
+posterm -> NUMBER
+term -> Posterm
+terms -> epsilon
+terms -> MOD term terms
+multiplicative_Expr -> term terms
+expre -> epsilon
+expressionn -> multiplicative_Expr expre
+a_state -> var ASSIGN expression
+statement -> a_state
+var -> IDENT i
+var -> IDENT i
+posterm -> var
+term -> Posterm
+terms -> epsilon
+multiplicative_Expr -> term terms
+posterm -> NUMBER
+term -> Posterm
+terms -> epsilon
+multiplicative_Expr -> term terms
+expre -> epsilon
+expre -> SUB multiplicative_expr expre
+expressionn -> multiplicative_Expr expre
+a_state -> var ASSIGN expression
+statement -> a_state
+var -> IDENT k
+posterm -> var
+term -> Posterm
+terms -> epsilon
+multiplicative_Expr -> term terms
+expre -> epsilon
+expressionn -> multiplicative_Expr expre
+comp -> GT
+posterm -> NUMBER
+term -> Posterm
+terms -> epsilon
+multiplicative_Expr -> term terms
+expre -> epsilon
+expressionn -> multiplicative_Expr expre
+re_ex	-> expressions
+relationn_Expr -> re_ex
+relation_And_Expr -> relationn_Expr
+bool_expr -> relation-And-Expr
+g_state -> CONTINUE
+statement -> g_state
+statements -> statement SEMICOLON 
+elsestates -> epsilon
+b_state -> IF bool_expr THEN statements elsestates ENDIF
+statement -> b_state
+var -> IDENT k
+vars -> var
+f_state -> WRITE vars
+statement -> f_state
+statements -> statement SEMICOLON 
+statements -> statement SEMICOLON statements
+statements -> statement SEMICOLON statements
+statements -> statement SEMICOLON statements
+c_state -> WHILE bool_expr BEGINLOOP statements
+statement -> c_state

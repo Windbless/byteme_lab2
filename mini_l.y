@@ -66,13 +66,15 @@ prog_start:	functions 	{cout << "prog_start -> functions"<< endl;}
 functions:	/* empty */ 	{cout << "functions ->	epsilon" << endl;}
  		| function functions {cout << "functions -> function functions"<< endl;}
 		;
-function:	FUNCTION IDENTIFIERS SEMICOLON BEGINPARAMS Declarations ENDPARAMS BEGINLOCALS Declarations ENDLOCALS BEGINBODY statements ENDBODY {cout<<"function -> FUNCTION IDENT "<<*($2)<<" SEMI		 COLON BEGIN_PARAMS declarations END_PARAMS BEGIN_LOCALS declarations END_LOCALS BEGIN_BODY statements END_BODY"<<endl;}
+function:	FUNCTION IDENTIFIERS SEMICOLON BEGINPARAMS Declarations ENDPARAMS BEGINLOCALS Declarations ENDLOCALS BEGINBODY statements ENDBODY {cout<<"function -> FUNCTION IDENT "<<*($2)<<" SEMICOLON BEGIN_PARAMS declarations END_PARAMS BEGIN_LOCALS declarations END_LOCALS BEGIN_BODY statements END_BODY"<<endl;}
 		;
 Declarations:	/* empty */	{cout << "Declaration -> epsilon" << endl;}
 		| declaration SEMICOLON {cout << "Declaration -> declaration SEMICOLON"<< endl;}
 	   	| declaration SEMICOLON Declarations {cout << "Declaration -> declaration SEMICOLON declarations"<< endl;}
 		;
-statements:		 statement SEMICOLON statements {cout << "statements -> statement SEMICOLON statements"<< endl;}  |		   statement SEMICOLON {cout << "statements -> statement SEMICOLON " << endl;}
+statements:		 statement SEMICOLON statements {cout << "statements -> statement SEMICOLON statements"<< endl;}  
+        |		 statement SEMICOLON {cout << "statements -> statement SEMICOLON " << endl;}
+
 		;
 declaration:	Identifiers COLON Arrayid	{cout << "declaration -> identifiers COLON Arrayid" << endl;}
 	   	;
@@ -102,17 +104,17 @@ elsestates:	/*empty*/ 	{cout << "elsestates -> epsilon" << endl;}
 			| ELSE statements {cout << "elsestates -> ELSE statements" << endl;} 
 			;
 
-cstate:		WHILE bool_expr BEGINLOOP statements {cout << "c_state -> WHILE bool_expr BEGINLOOP statements" << endl;}	   ;
+cstate:		WHILE bool_expr BEGINLOOP statements ENDLOOP    {cout << "c_state -> WHILE bool_expr BEGINLOOP statements" << endl;}	   ;
 
-dstate:		DO BEGINLOOP statements ENDLOOP statements ENDLOOP WHILE bool_expr  {cout << "d_state -> DO BEGINLOOP statements ENDLOOP statements ENDLOOP WHILE bool_expr " << endl;}
+dstate:		DO BEGINLOOP statements ENDLOOP WHILE bool_expr  {cout << "d_state -> DO BEGINLOOP statements ENDLOOP statements ENDLOOP WHILE bool_expr " << endl;}
 			;
 estate:		READ vars {cout << "e_state -> READ vars" << endl;}
 			;
-fstate:		WRITE vars {cout << "g_state -> WRITE vars" << endl;}
+fstate:		WRITE vars {cout << "f_state -> WRITE vars" << endl;}
 			;
-gstate:		CONTINUE   {cout << "h_state -> CONTINUE" << endl;}
+gstate:		CONTINUE   {cout << "g_state -> CONTINUE" << endl;}
 			;
-hstate:		RETURN expression {cout << "i_state -> RETURN Expression" << endl;}
+hstate:		RETURN expression {cout << "h_state -> RETURN Expression" << endl;}
 			;
 
 bool_expr:	relation_And_Expr	{cout << "bool_expr -> relation-And-Expr" << endl;}
