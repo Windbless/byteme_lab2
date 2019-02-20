@@ -123,13 +123,16 @@ bool_expr:	relation_And_Expr	{cout << "bool_expr -> relation-And-Expr" << endl;}
 relation_And_Expr: relation_Expr	{cout << "relation_And_Expr -> relationn_Expr" << endl;}
 		|relation_Expr AND relation_And_Expr {cout << "relation_And_Expr -> relation_Expr AND relation_And_Expr" << endl;}
 		;
-relation_Expr:	NOT re_ex	{cout << "relation_Expr -> NOT re_ex" << endl;}
-	     	| re_ex		{cout << "relationn_Expr -> re_ex" << endl;}
+		
+relation_Expr:	NOT expression comp expression 	{cout << "relation_Expr	-> NOT expressions" << endl;}
+     	|NOT TRUE		{cout << "relation_Expr -> NOT TRUE" << endl;}
+		|NOT FALSE		{cout << "relation_Expr -> NOT FALSE" << endl;}
+		|NOT LPAREN	bool_expr RPAREN {cout << "relation_Expr -> NOT LPAREN bool_expr RPAREN" << endl;}
+		|expression comp expression 	{cout << "relation_Expr	-> expressions" << endl;}
+     	|TRUE		{cout << "relation_Expr -> TRUE" << endl;}
+		|FALSE		{cout << "relation_Expr -> FALSE" << endl;}
+		|LPAREN	bool_expr RPAREN {cout << "relation_Expr -> LPAREN bool_expr RPAREN" << endl;}
 		;
-re_ex:	expression comp expression 	{cout << "re_ex	-> expressions" << endl;}
-     	|TRUE		{cout << "re_ex -> TRUE" << endl;}
-		|FALSE		{cout << "re_ex -> FALSE" << endl;}
-		|LPAREN	bool_expr RPAREN {cout << "re_ex -> LPAREN bool_expr RPAREN" << endl;}
 		;
 comp:		EQ {cout<< "comp -> EQ" <<endl;}
 		| NEQ {cout<< "comp -> NEQ" <<endl;}
