@@ -84,7 +84,7 @@ Identifiers:	IDENTIFIERS	{cout << "identifiers -> IDENT "<<*($1)<<endl ;}
 		;
 		
 Arrayid:	INTEGER		{cout << "Arrayid -> INTEGER" << endl;}	
-       		| ARRAY LSQUARE	NUMBER RSQUARE OF INTEGER	{cout << "Arrayid -> ARRAY LSQUARE NUMBER RSQUARE OF INTEGER"<< endl;}
+       		| ARRAY LSQUARE	NUMBER RSQUARE OF INTEGER	{cout << "Arrayid -> ARRAY LSQUARE NUMBER "<< ($3) << " RSQUARE OF INTEGER"<< endl;}
 		;
 statement:	astate		{cout << "statement -> a_state" << endl;}
 			|bstate		{cout << "statement -> b_state" << endl;}
@@ -164,7 +164,7 @@ ex:		/*empty*/	{cout << "ex -> epsilon" << endl;}
 		|expression COMMA ex {cout << "ex -> expression COMMA ex"}
 		; 
 posterm:	var 	{cout << "posterm -> var" << endl;}
-			|NUMBER {cout << "posterm -> NUMBER" << endl;}
+			|NUMBER {cout << "posterm -> NUMBER "<< $1 << endl;}
 			|LPAREN expression RPAREN {cout << "posterm -> LPAREN expression RPAREN" << endl;}
 			;
 var:		IDENTIFIERS		 {cout << "var -> IDENT " << *($1) << endl;}
