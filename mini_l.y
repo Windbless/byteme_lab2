@@ -156,7 +156,7 @@ term:	posterm		{cout << "term -> Posterm" << endl;}
 		|SUB posterm {cout << "term -> SUB posterm" << endl;}
 		|ident 		{cout << "term -> ident" << endl;}
 		;
-ident:	IDENTIFIERS	LPAREN ex RPAREN {cout << "ident -> IDENT " <<*($1) << "LPAREN ex RPAREN" << endl;}
+ident:	IDENTIFIERS	LPAREN ex RPAREN {cout << "ident -> IDENT " <<*($1) << " LPAREN ex RPAREN" << endl;}
 		;
 	
 ex:		/*empty*/	{cout << "ex -> epsilon" << endl;}

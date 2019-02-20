@@ -1,0 +1,14 @@
+ident -> IDENT fibonacci
+ident -> IDENT k
+identifiers -> ident
+declaration -> identifiers COLON INTEGER
+declarations -> epsilon
+declarations -> declaration SEMICOLON declarations
+declarations -> epsilon
+...
+function -> FUNCTION IDENT SEMICOLON BEGIN_PARAMS declarations END_PARAMS BEGIN_LOCALS declarations END_LOCALS BEGIN_BODY statements END_BODY
+functions -> epsilon
+functions -> function functions
+functions -> function functions
+prog_start -> functions
+
