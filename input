@@ -1,8 +1,10 @@
 function main;
 beginparams
+	b:
 endparams
 beginlocals
 	a : integer;
+	b: 
 endlocals
 beginbody
 	a := 1 + 2 * 3;

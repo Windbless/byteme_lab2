@@ -4,6 +4,7 @@
 #include "heading.h"
 int yyerror(char *s);
 int yylex(void);
+
 %}
 
 %union{
@@ -69,14 +70,17 @@ functions:	/* empty */ 	{cout << "functions ->	epsilon" << endl;}
 function:	FUNCTION IDENTIFIERS SEMICOLON BEGINPARAMS Declarations ENDPARAMS BEGINLOCALS Declarations ENDLOCALS BEGINBODY statements ENDBODY {cout<<"function -> FUNCTION IDENT "<<*($2)<<" SEMICOLON BEGIN_PARAMS declarations END_PARAMS BEGIN_LOCALS declarations END_LOCALS BEGIN_BODY statements END_BODY"<<endl;}
 		;
 Declarations:	/* empty */	{cout << "Declaration -> epsilon" << endl;}
-		| declaration SEMICOLON {cout << "Declaration -> declaration SEMICOLON"<< endl;}
 	   	| declaration SEMICOLON Declarations {cout << "Declaration -> declaration SEMICOLON declarations"<< endl;}
+	   	| error SEMICOLON 
+	   	| error SEMICOLON Declarations
+		| error
 		;
-statements:		 statement SEMICOLON statements {cout << "statements -> statement SEMICOLON statements"<< endl;}  
-        |		 statement SEMICOLON {cout << "statements -> statement SEMICOLON " << endl;}
+statements:     statement SEMICOLON statements {cout << "statements -> statement SEMICOLON statements"<< endl;}  
+        	| statement SEMICOLON {cout << "statements -> statement SEMICOLON " << endl;}
 
 		;
 declaration:	Identifiers COLON Arrayid	{cout << "declaration -> identifiers COLON Arrayid" << endl;}
+		|error 
 	   	;
 
 Identifiers:	IDENTIFIERS	{cout << "identifiers -> IDENT "<<*($1)<<endl ;}
@@ -133,7 +137,7 @@ relation_Expr:	NOT expression comp expression 	{cout << "relation_Expr	-> NOT ex
 		|FALSE		{cout << "relation_Expr -> FALSE" << endl;}
 		|LPAREN	bool_expr RPAREN {cout << "relation_Expr -> LPAREN bool_expr RPAREN" << endl;}
 		;
-		;
+		
 comp:		EQ {cout<< "comp -> EQ" <<endl;}
 		| NEQ {cout<< "comp -> NEQ" <<endl;}
 		| LT {cout<< "comp -> LT" <<endl;}
@@ -182,9 +186,10 @@ int yyerror(string s)
 {
   extern int column,line;	// defined and maintained in lex.c
   extern char *yytext;	// defined and maintained in lex.c
-  
-   cerr << "SYNTAX(PARSER) Error at line " << line <<", column " << column << " : Unexpected Symbol \"" << yytext << "\" Encountered." << endl;
-  exit(1);
+  //printf ( "SYNTAX(PARSER) Error at line %s, column %s :Unexpected Symbol %s Encoutered ", line, column, yytext );
+
+cerr << "SYNTAX(PARSER) Error at line " << line <<", column " << column << " : Unexpected Symbol \"" << yytext << "\" Encountered." << endl;
+
 }
 
 int yyerror(char *s)
