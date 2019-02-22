@@ -90,36 +90,20 @@ Identifiers:	IDENTIFIERS	{cout << "identifiers -> IDENT "<<*($1)<<endl ;}
 Arrayid:	INTEGER		{cout << "Arrayid -> INTEGER" << endl;}	
        		| ARRAY LSQUARE	NUMBER RSQUARE OF INTEGER	{cout << "Arrayid -> ARRAY LSQUARE NUMBER "<< ($3) << " RSQUARE OF INTEGER"<< endl;}
 		;
-statement:	astate		{cout << "statement -> a_state" << endl;}
-			|bstate		{cout << "statement -> b_state" << endl;}
-			|cstate 	{cout << "statement -> c_state" << endl;}
-			|dstate		{cout << "statement -> d_state" << endl;}
-			|estate		{cout << "statement -> e_state" << endl;}
-			|fstate		{cout << "statement -> f_state" << endl;}
-			|gstate		{cout << "statement -> g_state" << endl;}
-			|hstate		{cout << "statement -> h_state" << endl;}
+statement:	var ASSIGN expression {cout << "statement -> var ASSIGN expression" << endl;}
+			| IF bool_expr THEN statements elsestates ENDIF {cout << "statement -> IF bool_expr THEN statements elsestates ENDIF" << endl;}
+			| WHILE bool_expr BEGINLOOP statements ENDLOOP    {cout << "statement -> WHILE bool_expr BEGINLOOP statements" << endl;}	  
+			| DO BEGINLOOP statements ENDLOOP WHILE bool_expr  {cout << "statement -> DO BEGINLOOP statements ENDLOOP statements ENDLOOP WHILE bool_expr " << endl;}
+			| READ vars {cout << "statement -> READ vars" << endl;}
+			| WRITE vars {cout << "statement -> WRITE vars" << endl;}
+			| CONTINUE   {cout << "statement -> CONTINUE" << endl;}
+			| RETURN expression {cout << "statement -> RETURN Expression" << endl;}
 			;
-astate:		var ASSIGN expression {cout << "a_state -> var ASSIGN expression" << endl;}
-			;
-bstate:		IF bool_expr THEN statements elsestates ENDIF {cout << "b_state -> IF bool_expr THEN statements elsestates ENDIF" << endl;}
-			;
-
+			
 elsestates:	/*empty*/ 	{cout << "elsestates -> epsilon" << endl;}
 			| ELSE statements {cout << "elsestates -> ELSE statements" << endl;} 
 			;
 
-cstate:		WHILE bool_expr BEGINLOOP statements ENDLOOP    {cout << "c_state -> WHILE bool_expr BEGINLOOP statements" << endl;}	   ;
-
-dstate:		DO BEGINLOOP statements ENDLOOP WHILE bool_expr  {cout << "d_state -> DO BEGINLOOP statements ENDLOOP statements ENDLOOP WHILE bool_expr " << endl;}
-			;
-estate:		READ vars {cout << "e_state -> READ vars" << endl;}
-			;
-fstate:		WRITE vars {cout << "f_state -> WRITE vars" << endl;}
-			;
-gstate:		CONTINUE   {cout << "g_state -> CONTINUE" << endl;}
-			;
-hstate:		RETURN expression {cout << "h_state -> RETURN Expression" << endl;}
-			;
 
 bool_expr:	relation_And_Expr	{cout << "bool_expr -> relation-And-Expr" << endl;}
  		| relation_And_Expr OR bool_expr {cout << "bool_expr -> relationn-And-Expr OR bool_exper" << endl;}
