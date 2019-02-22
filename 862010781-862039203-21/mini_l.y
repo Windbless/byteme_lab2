@@ -11,7 +11,7 @@ int yylex(void);
   int		int_val;
   string*	op_val;
 }
-%error-verbose
+
 %start	prog_start
 %token <int_val> NUMBER
 %token <op_val> IDENTIFIERS
@@ -178,7 +178,7 @@ int yyerror(string s)
   extern char *yytext;	// defined and maintained in lex.c
   //printf ( "SYNTAX(PARSER) Error at line %s, column %s :Unexpected Symbol %s Encoutered ", line, column, yytext );
 
-cerr << "At line " << line <<", column " << column << " " << s << endl;
+cerr << "SYNTAX(PARSER) Error at line " << line <<", column " << column << " : Unexpected Symbol \"" << yytext << "\" Encountered." << endl;
 
 }
 

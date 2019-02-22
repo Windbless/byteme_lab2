@@ -1,12 +1,12 @@
 function main;
 beginparams
-	b:
-endparams
+	b: integer;
+endparams 
 beginlocals
 	a : integer;
-	b: 
-endlocals
+	b: integer
+endlocals 
 beginbody
-	a := 1 + 2 * 3;
+	a = 1 + 2 * 3;
 endbody
 
