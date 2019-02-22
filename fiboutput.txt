@@ -1,0 +1,127 @@
+identifiers -> IDENT k
+Arrayid -> INTEGER
+declaration -> identifiers COLON Arrayid
+Declaration -> epsilon
+Declaration -> declaration SEMICOLON declarations
+Declaration -> epsilon
+
+var -> IDENT k
+posterm -> var
+term -> Posterm
+terms -> epsilon
+multiplicative_Expr -> term terms
+expre -> epsilon
+expressionn -> multiplicative_Expr expre
+comp -> LTE
+posterm -> NUMBER
+term -> Posterm
+terms -> epsilon
+multiplicative_Expr -> term terms
+expre -> epsilon
+expressionn -> multiplicative_Expr expre
+re_ex	-> expressions
+relationn_Expr -> re_ex
+relation_And_Expr -> relationn_Expr
+bool_expr -> relation-And-Expr
+re_ex -> LPAREN bool_expr RPAREN
+relationn_Expr -> re_ex
+relation_And_Expr -> relationn_Expr
+bool_expr -> relation-And-Expr
+posterm -> NUMBER
+term -> Posterm
+terms -> epsilon
+multiplicative_Expr -> term terms
+expre -> epsilon
+expressionn -> multiplicative_Expr expre
+h_state -> RETURN Expression
+statement -> h_state
+statements -> statement SEMICOLON 
+elsestates -> epsilon
+b_state -> IF bool_expr THEN statements elsestates ENDIF
+statement -> b_state
+
+var -> IDENT k
+posterm -> var
+term -> Posterm
+terms -> epsilon
+multiplicative_Expr -> term terms
+posterm -> NUMBER
+term -> Posterm
+terms -> epsilon
+multiplicative_Expr -> term terms
+expre -> epsilon
+expre -> SUB multiplicative_expr expre
+expressionn -> multiplicative_Expr expre
+ex -> expression
+ident -> IDENT fibonacciLPAREN ex RPAREN
+term -> ident
+terms -> epsilon
+multiplicative_Expr -> term terms
+var -> IDENT k
+posterm -> var
+term -> Posterm
+terms -> epsilon
+multiplicative_Expr -> term terms
+posterm -> NUMBER
+term -> Posterm
+terms -> epsilon
+multiplicative_Expr -> term terms
+expre -> epsilon
+expre -> SUB multiplicative_expr expre
+expressionn -> multiplicative_Expr expre
+ex -> expression
+ident -> IDENT fibonacciLPAREN ex RPAREN
+term -> ident
+terms -> epsilon
+multiplicative_Expr -> term terms
+expre -> epsilon
+expre -> PLUS multiplicative_expr expre
+expressionn -> multiplicative_Expr expre
+h_state -> RETURN Expression
+statement -> h_state
+statements -> statement SEMICOLON 
+statements -> statement SEMICOLON statements
+function -> FUNCTION IDENT fibonacci SEMICOLON BEGIN_PARAMS declarations END_PARAMS BEGIN_LOCALS declarations END_LOCALS BEGIN_BODY statements END_BODY
+Declaration -> epsilon
+identifiers -> IDENT n
+Arrayid -> INTEGER
+declaration -> identifiers COLON Arrayid
+identifiers -> IDENT fib_n
+Arrayid -> INTEGER
+declaration -> identifiers COLON Arrayid
+Declaration -> epsilon
+Declaration -> declaration SEMICOLON declarations
+Declaration -> declaration SEMICOLON declarations
+var -> IDENT n
+vars -> var
+e_state -> READ vars
+statement -> e_state
+var -> IDENT fib_n
+var -> IDENT n
+posterm -> var
+term -> Posterm
+terms -> epsilon
+multiplicative_Expr -> term terms
+expre -> epsilon
+expressionn -> multiplicative_Expr expre
+ex -> expression
+ident -> IDENT fibonacciLPAREN ex RPAREN
+term -> ident
+terms -> epsilon
+multiplicative_Expr -> term terms
+expre -> epsilon
+expressionn -> multiplicative_Expr expre
+a_state -> var ASSIGN expression
+statement -> a_state
+var -> IDENT fib_n
+vars -> var
+f_state -> WRITE vars
+statement -> f_state
+statements -> statement SEMICOLON 
+statements -> statement SEMICOLON statements
+statements -> statement SEMICOLON statements
+function -> FUNCTION IDENT main SEMICOLON BEGIN_PARAMS declarations END_PARAMS BEGIN_LOCALS declarations END_LOCALS BEGIN_BODY statements END_BODY
+functions -> epsilon
+functions -> function functions
+functions -> function functions
+prog_start -> functions

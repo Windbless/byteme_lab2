@@ -1,402 +1,62 @@
-ident -> IDENT main
-declarations -> epsilon
-ident -> IDENT n
-identifiers -> ident
-declaration -> identifiers COLON INTEGER
-ident -> IDENT i
-ident -> IDENT j
-ident -> IDENT k
-identifiers -> ident
-identifiers -> ident COMMA identifiers
-identifiers -> ident COMMA identifiers
-declaration -> identifiers COLON INTEGER
-ident -> IDENT t
-identifiers -> ident
-declaration -> identifiers COLON ARRAY L_SQUARE_BRACKET NUMBER R_SQUARE_BRACKET OF INTEGER
-declarations -> epsilon
-declarations -> declaration SEMICOLON declarations
-declarations -> declaration SEMICOLON declarations
-declarations -> declaration SEMICOLON declarations
-ident -> IDENT i
-var -> ident
-ident -> IDENT j
-var -> ident
-vars -> var
-vars -> var COMMA vars
-statement -> READ vars
-ident -> IDENT k
-var -> ident
-term -> NUMBER
-multiplicative_expression -> term
-expression -> multiplicative_expression
-statement -> var ASSIGN expression
-ident -> IDENT n
-var -> ident
-term -> NUMBER
-multiplicative_expression -> term
-expression -> multiplicative_expression
-statement -> var ASSIGN expression
-ident -> IDENT t
-ident -> IDENT k
-var -> ident
-term -> var
-multiplicative_expression -> term
-expression -> multiplicative_expression
-var -> ident L_SQUARE_BRACKET expression R_SQUARE_BRACKET
-ident -> IDENT k
-var -> ident
-term -> var
-multiplicative_expression -> term
-expression -> multiplicative_expression
-statement -> var ASSIGN expression
-ident -> IDENT k
-var -> ident
-ident -> IDENT k
-var -> ident
-term -> var
-multiplicative_expression -> term
-term -> NUMBER
-multiplicative_expression -> term
-expression -> multiplicative_expression
-expression -> multiplicative_expression ADD multiplicative_expression
-statement -> var ASSIGN expression
-ident -> IDENT k
-var -> ident
-term -> var
-term -> NUMBER
-multiplicative_expression -> term MOD term
-expression -> multiplicative_expression
-comp -> EQ
-term -> NUMBER
-multiplicative_expression -> term
-expression -> multiplicative_expression
-relation_exp -> expression comp expression
-relation_and_exp -> relation_exp
-bool_exp -> relation_and_exp
-statement -> CONTINUE
-statements -> epsilon
-statements -> statement SEMICOLON statements
-statement -> IF bool_exp THEN statements ENDIF
-ident -> IDENT t
-ident -> IDENT k
-var -> ident
-term -> var
-multiplicative_expression -> term
-term -> NUMBER
-multiplicative_expression -> term
-expression -> multiplicative_expression
-expression -> multiplicative_expression SUB multiplicative_expression
-var -> ident L_SQUARE_BRACKET expression R_SQUARE_BRACKET
-vars -> var
-statement -> WRITE vars
-statements -> epsilon
-statements -> statement SEMICOLON statements
-statements -> statement SEMICOLON statements
-statements -> statement SEMICOLON statements
-statements -> statement SEMICOLON statements
-ident -> IDENT k
-var -> ident
-term -> var
-multiplicative_expression -> term
-expression -> multiplicative_expression
-comp -> LT
-ident -> IDENT n
-var -> ident
-term -> var
-multiplicative_expression -> term
-expression -> multiplicative_expression
-relation_exp -> expression comp expression
-relation_and_exp -> relation_exp
-bool_exp -> relation_and_exp
-statement -> DO BEGINLOOP statements ENDLOOP WHILE bool_exp
-ident -> IDENT i
-var -> ident
-term -> var
-multiplicative_expression -> term
-expression -> multiplicative_expression
-comp -> LT
-ident -> IDENT j
-var -> ident
-term -> var
-multiplicative_expression -> term
-expression -> multiplicative_expression
-relation_exp -> expression comp expression
-ident -> IDENT j
-var -> ident
-term -> var
-multiplicative_expression -> term
-expression -> multiplicative_expression
-comp -> LT
-ident -> IDENT n
-var -> ident
-term -> var
-multiplicative_expression -> term
-expression -> multiplicative_expression
-relation_exp -> expression comp expression
-ident -> IDENT i
-var -> ident
-term -> var
-multiplicative_expression -> term
-expression -> multiplicative_expression
-comp -> GTE
-term -> NUMBER
-multiplicative_expression -> term
-expression -> multiplicative_expression
-relation_exp -> expression comp expression
-relation_and_exp -> relation_exp
-relation_and_exp -> relation_exp AND relation_exp
-relation_and_exp -> relation_exp AND relation_exp
-bool_exp -> relation_and_exp
-ident -> IDENT t
-ident -> IDENT i
-var -> ident
-term -> var
-multiplicative_expression -> term
-expression -> multiplicative_expression
-var -> ident L_SQUARE_BRACKET expression R_SQUARE_BRACKET
-ident -> IDENT i
-var -> ident
-term -> var
-term -> NUMBER
-multiplicative_expression -> term MULT term
-expression -> multiplicative_expression
-statement -> var ASSIGN expression
-ident -> IDENT t
-ident -> IDENT j
-var -> ident
-term -> var
-multiplicative_expression -> term
-expression -> multiplicative_expression
-var -> ident L_SQUARE_BRACKET expression R_SQUARE_BRACKET
-ident -> IDENT j
-var -> ident
-term -> var
-term -> NUMBER
-multiplicative_expression -> term MULT term
-expression -> multiplicative_expression
-statement -> var ASSIGN expression
-ident -> IDENT k
-var -> ident
-ident -> IDENT t
-ident -> IDENT i
-var -> ident
-term -> var
-multiplicative_expression -> term
-expression -> multiplicative_expression
-var -> ident L_SQUARE_BRACKET expression R_SQUARE_BRACKET
-term -> var
-multiplicative_expression -> term
-expression -> multiplicative_expression
-statement -> var ASSIGN expression
-ident -> IDENT t
-ident -> IDENT i
-var -> ident
-term -> var
-multiplicative_expression -> term
-expression -> multiplicative_expression
-var -> ident L_SQUARE_BRACKET expression R_SQUARE_BRACKET
-ident -> IDENT t
-ident -> IDENT j
-var -> ident
-term -> var
-multiplicative_expression -> term
-expression -> multiplicative_expression
-var -> ident L_SQUARE_BRACKET expression R_SQUARE_BRACKET
-term -> var
-multiplicative_expression -> term
-expression -> multiplicative_expression
-statement -> var ASSIGN expression
-ident -> IDENT t
-ident -> IDENT j
-var -> ident
-term -> var
-multiplicative_expression -> term
-expression -> multiplicative_expression
-var -> ident L_SQUARE_BRACKET expression R_SQUARE_BRACKET
-ident -> IDENT k
-var -> ident
-term -> var
-multiplicative_expression -> term
-expression -> multiplicative_expression
-statement -> var ASSIGN expression
-statements -> epsilon
-statements -> statement SEMICOLON statements
-statements -> statement SEMICOLON statements
-statements -> statement SEMICOLON statements
-statements -> statement SEMICOLON statements
-statements -> statement SEMICOLON statements
-ident -> IDENT i
-var -> ident
-term -> var
-multiplicative_expression -> term
-expression -> multiplicative_expression
-comp -> GTE
-ident -> IDENT j
-var -> ident
-term -> var
-multiplicative_expression -> term
-expression -> multiplicative_expression
-relation_exp -> expression comp expression
-relation_and_exp -> relation_exp
-relation_exp -> FALSE
-relation_and_exp -> relation_exp
-bool_exp -> relation_and_exp
-bool_exp -> relation_and_exp OR relation_and_exp
-ident -> IDENT k
-var -> ident
-term -> NUMBER
-multiplicative_expression -> term
-ident -> IDENT i
-var -> ident
-term -> var
-multiplicative_expression -> term
-ident -> IDENT j
-var -> ident
-term -> var
-multiplicative_expression -> term
-expression -> multiplicative_expression
-expression -> multiplicative_expression SUB multiplicative_expression
-expression -> multiplicative_expression ADD multiplicative_expression
-term -> L_PAREN expression R_PAREN
-term -> NUMBER
-multiplicative_expression -> term MOD term
-expression -> multiplicative_expression
-statement -> var ASSIGN expression
-ident -> IDENT i
-var -> ident
-ident -> IDENT i
-var -> ident
-term -> var
-multiplicative_expression -> term
-term -> NUMBER
-multiplicative_expression -> term
-expression -> multiplicative_expression
-expression -> multiplicative_expression SUB multiplicative_expression
-statement -> var ASSIGN expression
-ident -> IDENT k
-var -> ident
-term -> var
-multiplicative_expression -> term
-expression -> multiplicative_expression
-comp -> GT
-term -> NUMBER
-multiplicative_expression -> term
-expression -> multiplicative_expression
-relation_exp -> expression comp expression
-relation_and_exp -> relation_exp
-bool_exp -> relation_and_exp
-statement -> CONTINUE
-statements -> epsilon
-statements -> statement SEMICOLON statements
-statement -> IF bool_exp THEN statements ENDIF
-ident -> IDENT k
-var -> ident
-vars -> var
-statement -> WRITE vars
-statements -> epsilon
-statements -> statement SEMICOLON statements
-statements -> statement SEMICOLON statements
-statements -> statement SEMICOLON statements
-statements -> statement SEMICOLON statements
-statement -> WHILE bool_exp BEGINLOOP statements ENDLOOP
-statements -> epsilon
-statements -> statement SEMICOLON statements
-statement -> IF bool_exp THEN statements ELSE statements ENDIF
-ident -> IDENT i
-var -> ident
-ident -> IDENT j
-var -> ident
-ident -> IDENT k
-var -> ident
-vars -> var
-vars -> var COMMA vars
-vars -> var COMMA vars
-statement -> WRITE vars
-ident -> IDENT i
-var -> ident
-term -> var
-multiplicative_expression -> term
-expression -> multiplicative_expression
-comp -> LT
-ident -> IDENT n
-var -> ident
-term -> var
-multiplicative_expression -> term
-expression -> multiplicative_expression
-relation_exp -> expression comp expression
-ident -> IDENT i
-var -> ident
-term -> var
-multiplicative_expression -> term
-expression -> multiplicative_expression
-comp -> GTE
-term -> NUMBER
-multiplicative_expression -> term
-expression -> multiplicative_expression
-relation_exp -> expression comp expression
-relation_and_exp -> relation_exp
-relation_and_exp -> relation_exp AND relation_exp
-bool_exp -> relation_and_exp
-ident -> IDENT t
-ident -> IDENT i
-var -> ident
-term -> var
-multiplicative_expression -> term
-expression -> multiplicative_expression
-var -> ident L_SQUARE_BRACKET expression R_SQUARE_BRACKET
-vars -> var
-statement -> WRITE vars
-statements -> epsilon
-statements -> statement SEMICOLON statements
-statement -> IF bool_exp THEN statements ENDIF
-ident -> IDENT j
-var -> ident
-term -> var
-multiplicative_expression -> term
-expression -> multiplicative_expression
-comp -> LT
-ident -> IDENT n
-var -> ident
-term -> var
-multiplicative_expression -> term
-expression -> multiplicative_expression
-relation_exp -> expression comp expression
-ident -> IDENT j
-var -> ident
-term -> var
-multiplicative_expression -> term
-expression -> multiplicative_expression
-comp -> GTE
-term -> NUMBER
-multiplicative_expression -> term
-expression -> multiplicative_expression
-relation_exp -> expression comp expression
-relation_and_exp -> relation_exp
-relation_and_exp -> relation_exp AND relation_exp
-bool_exp -> relation_and_exp
-ident -> IDENT t
-ident -> IDENT j
-var -> ident
-term -> var
-multiplicative_expression -> term
-expression -> multiplicative_expression
-var -> ident L_SQUARE_BRACKET expression R_SQUARE_BRACKET
-vars -> var
-statement -> WRITE vars
-statements -> epsilon
-statements -> statement SEMICOLON statements
-statement -> IF bool_exp THEN statements ENDIF
-statements -> epsilon
-statements -> statement SEMICOLON statements
-statements -> statement SEMICOLON statements
-statements -> statement SEMICOLON statements
-statements -> statement SEMICOLON statements
-statements -> statement SEMICOLON statements
-statements -> statement SEMICOLON statements
-statements -> statement SEMICOLON statements
-statements -> statement SEMICOLON statements
-function -> FUNCTION IDENT SEMICOLON BEGIN_PARAMS declarations END_PARAMS BEGIN_LOCALS declarations END_LOCALS BEGIN_BODY statements END_BODY
-functions -> epsilon
-functions -> function functions
-prog_start -> functions
+##  primes.min: compute primes using Sieve of Eratosthenes
+##  (http://en.wikipedia.org/wiki/Sieve_of_Eratosthenes)
+##
+##  Compute primes up to a specified n by crossing out multiples of successively
+##  larger primes in a boolean array.  The array stores a[k] = 1 if k is composite
+##  (not prime), and a[k] = 0 if k is not divisible by the divisors considered
+##  thus far.
+## 
+##  Requires a specified integer n as input, assumed to be < 1000.
 
+function main;
+beginparams
+endparams
+
+beginlocals
+
+n : integer;
+a : array[1000] of integer;	## prime candidates array
+i, j : integer;
+x, sqrt_n : integer;
+
+endlocals
+
+beginbody	## main program
+    ## compute the square root of n and put the result in sqrt_n
+    read n;
+    x := n;
+    while x > n / x beginloop
+	    x := (x+n / x) / 2;
+    endloop;
+    sqrt_n := x;
+
+    ## initialization of the array
+    i := 2;
+    while i <= n beginloop
+	    a[i] := 0;
+	    i := i + 1;
+    endloop;
+
+    ## make the array
+    i := 2;
+    while i <= sqrt_n beginloop
+	    if a[i] == 0 then
+          ## i prime, so eliminate its multiples
+	       j := i+i;
+	       while j <= n beginloop
+		       a[j] := 1;
+		       j := j+i;
+	       endloop;
+       endif;
+       i := i + 1;
+    endloop;
+
+    ## print primes
+    i := 2;
+    while i <= n beginloop
+	    if a[i] == 0 then
+	       write i;
+       endif;
+       i := i + 1;
+   endloop;
+endbody

@@ -397,3 +397,129 @@ statements -> statement SEMICOLON statements
 statements -> statement SEMICOLON statements
 c_state -> WHILE bool_expr BEGINLOOP statements
 statement -> c_state
+statements -> statement SEMICOLON 
+elsestates -> ELSE statements
+b_state -> IF bool_expr THEN statements elsestates ENDIF
+statement -> b_state
+var -> IDENT i
+var -> IDENT j
+var -> IDENT k
+vars -> var
+vars -> var COMMA vars
+vars -> var COMMA vars
+f_state -> WRITE vars
+statement -> f_state
+var -> IDENT i
+posterm -> var
+term -> Posterm
+terms -> epsilon
+multiplicative_Expr -> term terms
+expre -> epsilon
+expressionn -> multiplicative_Expr expre
+comp -> LT
+var -> IDENT n
+posterm -> var
+term -> Posterm
+terms -> epsilon
+multiplicative_Expr -> term terms
+expre -> epsilon
+expressionn -> multiplicative_Expr expre
+re_ex	-> expressions
+relationn_Expr -> re_ex
+var -> IDENT i
+posterm -> var
+term -> Posterm
+terms -> epsilon
+multiplicative_Expr -> term terms
+expre -> epsilon
+expressionn -> multiplicative_Expr expre
+comp -> GTE
+posterm -> NUMBER
+term -> Posterm
+terms -> epsilon
+multiplicative_Expr -> term terms
+expre -> epsilon
+expressionn -> multiplicative_Expr expre
+re_ex	-> expressions
+relationn_Expr -> re_ex
+relation_And_Expr -> relationn_Expr
+relation_And_Expr -> relation_Expr AND relation_And_Expr
+bool_expr -> relation-And-Expr
+var -> IDENT i
+posterm -> var
+term -> Posterm
+terms -> epsilon
+multiplicative_Expr -> term terms
+expre -> epsilon
+expressionn -> multiplicative_Expr expre
+var -> IDENT t LSQUARE expression RSQUARE
+vars -> var
+f_state -> WRITE vars
+statement -> f_state
+statements -> statement SEMICOLON 
+elsestates -> epsilon
+b_state -> IF bool_expr THEN statements elsestates ENDIF
+statement -> b_state
+var -> IDENT j
+posterm -> var
+term -> Posterm
+terms -> epsilon
+multiplicative_Expr -> term terms
+expre -> epsilon
+expressionn -> multiplicative_Expr expre
+comp -> LT
+var -> IDENT n
+posterm -> var
+term -> Posterm
+terms -> epsilon
+multiplicative_Expr -> term terms
+expre -> epsilon
+expressionn -> multiplicative_Expr expre
+re_ex	-> expressions
+relationn_Expr -> re_ex
+var -> IDENT j
+posterm -> var
+term -> Posterm
+terms -> epsilon
+multiplicative_Expr -> term terms
+expre -> epsilon
+expressionn -> multiplicative_Expr expre
+comp -> GTE
+posterm -> NUMBER
+term -> Posterm
+terms -> epsilon
+multiplicative_Expr -> term terms
+expre -> epsilon
+expressionn -> multiplicative_Expr expre
+re_ex	-> expressions
+relationn_Expr -> re_ex
+relation_And_Expr -> relationn_Expr
+relation_And_Expr -> relation_Expr AND relation_And_Expr
+bool_expr -> relation-And-Expr
+var -> IDENT j
+posterm -> var
+term -> Posterm
+terms -> epsilon
+multiplicative_Expr -> term terms
+expre -> epsilon
+expressionn -> multiplicative_Expr expre
+var -> IDENT t LSQUARE expression RSQUARE
+vars -> var
+f_state -> WRITE vars
+statement -> f_state
+statements -> statement SEMICOLON 
+elsestates -> epsilon
+b_state -> IF bool_expr THEN statements elsestates ENDIF
+statement -> b_state
+statements -> statement SEMICOLON 
+statements -> statement SEMICOLON statements
+statements -> statement SEMICOLON statements
+statements -> statement SEMICOLON statements
+statements -> statement SEMICOLON statements
+statements -> statement SEMICOLON statements
+statements -> statement SEMICOLON statements
+statements -> statement SEMICOLON statements
+function -> FUNCTION IDENT main SEMICOLON BEGIN_PARAMS declarations END_PARAMS BEGIN_LOCALS declarations END_LOCALS BEGIN_BODY statements END_BODY
+functions -> epsilon
+functions -> function functions
+prog_start -> functions
